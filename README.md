@@ -23,20 +23,31 @@ Interactive 3D rocket launch simulator with pre-launch stability analysis (Barro
 
 ### 2. FLIGHT SIMULATION WITH REAL-TIME AERODYNAMICS
 
-Physics implemented:
-
-- **Atmospheric model** – air density and temperature vs altitude (exponential density, lapse rate to 11 km)
-- **Speed of sound** – \( a = \sqrt{\gamma R T} \) from temperature
-- **Mach number** – velocity / speed of sound
-- **Drag coefficient (Cd) vs Mach:**
-  - Subsonic (Mach &lt; 0.8): Cd ≈ 0.35
-  - Transonic (0.8–1.2): drag spike (smooth interpolation)
-  - Supersonic (&gt; 1.2): Cd ≈ 0.6, slowly decreasing
-- **Drag force** – \( F_d = \frac{1}{2} \rho v^2 C_d A \) (opposes velocity)
-- **Thrust** – motor thrust curves (trapezoidal / Estes-like); **increases slightly with altitude** as ambient pressure drops
-- **Gravity** – \( g = 9.81\,\text{m/s}^2 \)
-- **Mass change** – propellant burn; dry mass + motor casing after burnout
-- **Apogee detection** and parachute deployment (recovery phase)
+Physics Implemented:
+- **Atmospheric model**  
+  Air density and temperature as a function of altitude  
+  (exponential density model; linear lapse rate up to 11 km)
+- **Speed of sound**  
+  `a = sqrt(γ · R · T)` computed from local temperature
+- **Mach number**  
+  `Mach = v / a`
+- **Drag coefficient (Cd) vs Mach**
+  - **Subsonic (Mach < 0.8):** Cd ≈ 0.35  
+  - **Transonic (0.8–1.2):** Drag spike with smooth interpolation  
+  - **Supersonic (Mach > 1.2):** Cd ≈ 0.6, slowly decreasing
+- **Drag force**  
+  `Fd = 0.5 · ρ · v² · Cd · A`  
+  Always applied opposite to velocity
+- **Thrust**  
+  Motor thrust curves (trapezoidal / Estes-style)  
+  Thrust increases slightly with altitude as ambient pressure drops
+- **Gravity**  
+  Constant gravitational acceleration: `g = 9.81 m/s²`
+- **Mass change**  
+  Propellant mass decreases during burn  
+  Dry mass + motor casing remain after burnout
+- **Recovery dynamics**  
+  Apogee detection and parachute deployment
 
 To accelerate upward: **thrust &gt; weight + drag**.
 
