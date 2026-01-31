@@ -102,12 +102,27 @@ Scene elements:
 
 ## IMPLEMENTATION NOTES
 
-- **Constants:** \( g = 9.81\,\text{m/s}^2 \), sea-level density \( \rho_0 = 1.225\,\text{kg/m}^3 \), sea-level pressure \( P_0 = 101325\,\text{Pa} \).
-- **Atmosphere:** \( \rho = \rho_0 \exp(-h/7400) \); temperature \( T = 288.15 - 0.0065 \times h \) up to 11 km.
-- **Simulation:** 60 FPS timestep (\( dt = 1/60\,\text{s} \)); trajectory computed in API; playback with optional interpolation for smooth force arrows.
-- **Barrowman:** Standard model-rocketry equations for CP (nose, body, fins); CG from component masses and positions.
-- **Motors:** Trapezoidal thrust curves (ramp up, sustain, ramp down); Estes-style options (A8, B6, C6, D12, etc.); thrust scaled by altitude (lower ambient pressure → slightly higher thrust).
-- **Drag:** \( C_d(\text{Mach}) \) with subsonic, transonic spike, and supersonic regime; \( F_d = \frac{1}{2}\rho v^2 C_d A \).
+- **Constants:**  
+  g = 9.81 m/s²  
+  Sea-level density ρ₀ = 1.225 kg/m³  
+  Sea-level pressure P₀ = 101325 Pa
+- **Atmosphere:**  
+  Density: `ρ = ρ₀ · exp(-h / 7400)`  
+  Temperature: `T = 288.15 − 0.0065 × h` (valid up to 11 km)
+- **Simulation:**  
+  60 FPS timestep (`dt = 1/60 s`)  
+  Trajectory computed in API; playback uses optional interpolation for smooth force arrows
+- **Barrowman:**  
+  Standard model-rocketry equations for center of pressure (nose, body, fins)  
+  Center of gravity computed from component masses and positions
+- **Motors:**  
+  Trapezoidal thrust curves (ramp-up, sustain, ramp-down)  
+  Estes-style motors (A8, B6, C6, D12, etc.)  
+  Thrust scaled by altitude (lower ambient pressure → slightly higher thrust)
+- **Drag:**  
+  Mach-dependent drag coefficient (`Cd(Mach)`) with subsonic, transonic spike, and supersonic regimes  
+  Drag force: `Fd = 0.5 · ρ · v² · Cd · A`
+
 
 ---
 
