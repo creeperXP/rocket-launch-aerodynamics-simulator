@@ -2,6 +2,7 @@
 
 Interactive 3D rocket launch simulator with pre-launch stability analysis (Barrowman), real-time flight physics, and React Three Fiber visualization.
 
+![Rocket](rocket-image-github.png)
 ---
 
 ## CORE FEATURES
